@@ -1,35 +1,37 @@
 .row{
-    height:100px;
-    width:300px;
-    border-bottom: 3px solid black;
-    margin: 0 auto;
-    
-}
-
-.row3{
-    height:100px;
-    width:300px;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
-
-span{
-    width: 400px;
-}
-
 .cell{
-    height:40px;
-    width:00px;
-    border-right:3px solid black;
-    text-align: center;
+    border: 2px solid white;
+    height:100px;
+    width:100px;
 
 }
 
 .board{
-    border:1px solid black;
-    width: 400px;
-    margin: 5em auto;
     background-color: burlywood;
-    padding: 2em;
+    margin: 0 auto;
+    width:400px;
+    padding: 4em;
+}
 
+#panel{
+    background-color: bisque;
+    margin: 0 auto;
+    width: 400px;
+    height: 100px;
+}
+
+button{
+
+    text-align:center;
+}
+
+.button-start{
+    margin:0 auto;
+    width: 100px;
+    padding:1em;
 }
