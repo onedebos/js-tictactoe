@@ -19,7 +19,11 @@
 </head>
 
 <body>
-    <div class="board" id="game">
+        <div class="button-start">
+                <button class="button is-danger is-small "> Start Game </button>
+        </div>
+    <div class="board" id="game-board">
+ 
         <div class="row">
             <div class="cell-1 cell">
 
@@ -58,18 +62,32 @@
 
     </div>
     <div id="panel">
-        <div class="score">
-            <div class="player-1-score" id="player-1-score">
 
+            <div class="player-1-score" id="player-1-score">
+            
             </div>
             <div class="player-2-score" id="player-2-score">
-
+                
             </div>
-        </div>
-        <div class="button-start">
-                <button class="button is-danger is-small "> Start Game </button>
-        </div>
+       
+
+              
         
+    </div>
+    <div class="box grid">
+            <div class="field">
+                    <label class="label">player 1</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="player 1 name">
+                    </div>
+                  </div>
+                  <div class="field">
+                        <label class="label">player 2</label>
+                        <div class="control">
+                          <input class="input" type="text" placeholder="player 2 name">
+                        </div>
+                      </div>
+    
     </div>
     </div>
 
