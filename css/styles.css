@@ -1,0 +1,35 @@
+.row{
+    height:100px;
+    width:300px;
+    border-bottom: 3px solid black;
+    margin: 0 auto;
+    
+}
+
+.row3{
+    height:100px;
+    width:300px;
+    margin: 0 auto;
+
+}
+
+span{
+    width: 400px;
+}
+
+.cell{
+    height:40px;
+    width:00px;
+    border-right:3px solid black;
+    text-align: center;
+
+}
+
+.board{
+    border:1px solid black;
+    width: 400px;
+    margin: 5em auto;
+    background-color: burlywood;
+    padding: 2em;
+
+}
