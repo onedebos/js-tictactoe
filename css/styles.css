@@ -16,9 +16,10 @@ body{
 
 .board{
     background-color: burlywood;
-    margin: 0 auto;
+    margin: 1em auto;
     width:400px;
-    padding: 4em;
+    height:400px;
+    padding: 2em;
 }
 
 #panel{

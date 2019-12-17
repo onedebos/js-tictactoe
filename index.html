@@ -19,61 +19,25 @@
 </head>
 
 <body>
-        <div class="button-start">
-                <button class="button is-danger is-small "> Start Game </button>
-        </div>
-    <div class="board" id="game-board">
- 
-        <div class="row">
-            <div class="cell-1 cell">
+    <table class="board" id="game-board">
+      <tr class="row">
+        <td class="cell" data-num="0"></td>
+        <td class="cell" data-num="1"></td>
+        <td class="cell" data-num="2"></td>
+      </tr>
+      <tr class="row">
+        <td class="cell" data-num="3"></td>
+        <td class="cell" data-num="4"></td>
+        <td class="cell" data-num="5"></td>
+      </tr>
+      <tr class="row">
+        <td class="cell" data-num="6"></td>
+        <td class="cell" data-num="7"></td>
+        <td class="cell" data-num="8"></td>
+      </tr>
 
-            </div>
-            <div class="cell-2 cell">
+    </table>
 
-            </div>
-            <div class="cell-3 cell">
-
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="cell-4 cell">
-
-            </div>
-            <div class="cell-5 cell">
-
-            </div>
-            <div class="cell-6 cell">
-
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="cell-7 cell">
-
-            </div>
-            <div class="cell-8 cell">
-
-            </div>
-            <div class="cell-9 cell">
-
-            </div>
-        </div>
-
-    </div>
-    <div id="panel">
-
-            <div class="player-1-score" id="player-1-score">
-            
-            </div>
-            <div class="player-2-score" id="player-2-score">
-                
-            </div>
-       
-
-              
-        
-    </div>
     <div class="box grid">
             <div class="field">
                     <label class="label">player 1</label>
@@ -87,9 +51,12 @@
                           <input class="input" type="text" placeholder="player 2 name">
                         </div>
                       </div>
-    
+                      <div class="buttons">
+                        <button class="button is-danger">Start game</button>
+                      </div>
+                      </div>
     </div>
-    </div>
+
 
     <script src="js/index.js"></script>
 </body>
