@@ -93,6 +93,8 @@ function checkForWin(movesArray, name) {
   }
 }
 
+//reset board
+
 function resetBoard() {
   for (var i = boxes.length - 1; i >= 0; i--) {
     boxes[i].innerHTML = "";
@@ -112,3 +114,4 @@ function resetBoard() {
   turnText.innerHTML = `New game! Let's go!`;
   start();
 }
+
