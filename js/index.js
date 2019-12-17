@@ -5,26 +5,34 @@ var counter = 1;
 var winCounter = 0;
 var OMoves = [];
 var XMoves = [];
+const submitBtn = document.querySelector('.start-now');
+let player1 = '';
+let player2 = '';
+
+ submitBtn.onclick = () => {
+     player1 = document.querySelector('#name-1').value;
+     player2 = document.querySelector('#name-2').value;
+
+    start();
+}
 
 var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
 [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
 
-function getPlayerNames(){
-  const submitBtn = document.querySelector('.start-now');
-  submitBtn.addEventListener('click', names);
 
-  function names(){
-      const player1 = document.querySelector('.name-1').value;
-      const player2 = document.querySelector('.name-2').value;
-  }
-  
-}
+
 
 function start() {
-  addXandOListener();
+
+    if(player1 == '' || player2 == ''){
+        alert("You must enter player names to start!");
+    }else{
+        addXandOListener();
   addResetListener();
-  getPlayerNames()
+    }
+  
+ 
 }
 
 function addXandOListener() {
@@ -39,17 +47,17 @@ function addXorO(event) {
       OMoves.push(parseInt(event.target.getAttribute("data-num")));
       event.target.innerHTML = "O";
       event.target.setAttribute("class", "O");
-      turnText.innerHTML = "It is X's turn";
+      turnText.innerHTML = `It is ${player1}'s turn`;
       counter++;
-      checkForWin(OMoves, "O");
+      checkForWin(OMoves, player2);
     }
     else {
       XMoves.push(parseInt(event.target.getAttribute("data-num")));
       event.target.innerHTML = "X";
       event.target.setAttribute("class", "X");
-      turnText.innerHTML = "It is O's turn";
+      turnText.innerHTML = `It is ${player2}'s turn`;
       counter++;
-      checkForWin(XMoves, "X");
+      checkForWin(XMoves, player1);
     }
     // if the counter is greater than or equal to 10, the game is a draw!
     if (counter >= 10) {
@@ -90,9 +98,17 @@ function resetBoard() {
     boxes[i].innerHTML = "";
     boxes[i].setAttribute("class", "clear");
   }
+
+  let fieldsToClear = document.getElementsByClassName("input");
+  for (let i = 0; i < fieldsToClear.length; i++) {
+    fieldsToClear[i].value = "";
+  }
+  player1 = '';
+  player2='';
   OMoves = [];
   XMoves = [];
   winCounter = 0;
   counter = 1;
-  turnText.innerHTML = "It is X's turn";
+  turnText.innerHTML = `New game! Let's go!`;
+  start();
 }
