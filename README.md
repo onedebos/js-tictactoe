@@ -12,6 +12,11 @@ In this project, the student builds a Tic Tac Toe game (Again) but this time itâ
 
   <h3 align="center">PROJECT: Tic tac toe (again)</h3>
 
+```
+  For start this Project 
+
+   Git clone https://github.com/onedebos/js-tictactoe.git
+```
   <p align="center">
     This is part of the project of the Main Javascript curriculum at Microverse
     <br />
