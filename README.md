@@ -16,7 +16,7 @@ In this project, the student builds a Tic Tac Toe game (Again) but this time it�
     This is part of the project of the Main Javascript curriculum at Microverse
     <br />
     <br />
-    <a href="#"><strong>Final Result</strong></a>
+    <a href="#"><strong>Final Result(stil working)</strong></a>
     ·
     <a href="https://www.theodinproject.com/">Reference</a>
     ·
@@ -59,6 +59,6 @@ Project Link: [https://github.com/digomes87/Library](https://github.com/digomes8
 * References 4 - [youtube](https://www.youtube.com/watch?v=M258B1b_pMs)
 * References 5 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
 * References 6 - [youtube](https://www.youtube.com/watch?v=ByuAHXr1ytg)
-* References 1 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
-* References 1 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
-* References 1 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
+* References 7 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
+* References 8 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
+* References 9 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
