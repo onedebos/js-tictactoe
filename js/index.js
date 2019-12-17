@@ -5,34 +5,35 @@ var counter = 1;
 var winCounter = 0;
 var OMoves = [];
 var XMoves = [];
-const submitBtn = document.querySelector('.start-now');
-let player1 = '';
-let player2 = '';
+const submitBtn = document.querySelector(".start-now");
+let player1 = "";
+let player2 = "";
 
- submitBtn.onclick = () => {
-     player1 = document.querySelector('#name-1').value;
-     player2 = document.querySelector('#name-2').value;
+submitBtn.onclick = () => {
+  player1 = document.querySelector("#name-1").value;
+  player2 = document.querySelector("#name-2").value;
 
-    start();
-}
+  start();
+};
 
-var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-
-
-
-
+var winningCombinations = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+];
 
 function start() {
-
-    if(player1 == '' || player2 == ''){
-        alert("You must enter player names to start!");
-    }else{
-        addXandOListener();
-  addResetListener();
-    }
-  
- 
+  if (player1 == "" || player2 == "") {
+    alert("You must enter player names to start!");
+  } else {
+    addXandOListener();
+    addResetListener();
+  }
 }
 
 function addXandOListener() {
@@ -50,8 +51,7 @@ function addXorO(event) {
       turnText.innerHTML = `It is ${player1}'s turn`;
       counter++;
       checkForWin(OMoves, player2);
-    }
-    else {
+    } else {
       XMoves.push(parseInt(event.target.getAttribute("data-num")));
       event.target.innerHTML = "X";
       event.target.setAttribute("class", "X");
@@ -62,7 +62,7 @@ function addXorO(event) {
     // if the counter is greater than or equal to 10, the game is a draw!
     if (counter >= 10) {
       turnText.innerHTML = "Game Over!";
-      document.getElementById('message').innerHTML = "It's a tie, play again?"
+      document.getElementById("message").innerHTML = "It's a tie, play again?";
       resetBoard();
     }
   }
@@ -86,14 +86,13 @@ function checkForWin(movesArray, name) {
       }
       // if winCounter === 3 that means all 3 moves are winning combos and game is over!
       if (winCounter === 3) {
-        document.getElementById('message').innerHTML = "Game over, " + name + " wins!";
+        document.getElementById("message").innerHTML =
+          "Game over, " + name + " wins!";
         resetBoard();
       }
     }
   }
 }
-
-//reset board
 
 function resetBoard() {
   for (var i = boxes.length - 1; i >= 0; i--) {
@@ -105,8 +104,8 @@ function resetBoard() {
   for (let i = 0; i < fieldsToClear.length; i++) {
     fieldsToClear[i].value = "";
   }
-  player1 = '';
-  player2='';
+  player1 = "";
+  player2 = "";
   OMoves = [];
   XMoves = [];
   winCounter = 0;
@@ -114,4 +113,3 @@ function resetBoard() {
   turnText.innerHTML = `New game! Let's go!`;
   start();
 }
-
