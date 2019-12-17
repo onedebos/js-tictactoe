@@ -52,3 +52,7 @@ button{
     grid-template-columns: 1fr 1fr;
 
 }
+
+.table-div{
+    margin-top:2em;
+}
