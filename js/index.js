@@ -6,30 +6,93 @@ var winCounter = 0;
 var OMoves = [];
 var XMoves = [];
 
-function getPlayerNames(){
-    const submitBtn = document.querySelector('.start-now');
-    submitBtn.addEventListener('click', names);
+var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
-    function names(){
-        const player1 = document.querySelector('.name-1').value;
-        const player2 = document.querySelector('.name-2').value;
-    }
-    
+
+function getPlayerNames(){
+  const submitBtn = document.querySelector('.start-now');
+  submitBtn.addEventListener('click', names);
+
+  function names(){
+      const player1 = document.querySelector('.name-1').value;
+      const player2 = document.querySelector('.name-2').value;
+  }
+  
 }
 
-
-var winningCombinations = [[0,1,2],[3,4,5],[6,7,8],
-[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-
-function start(){
+function start() {
   addXandOListener();
   addResetListener();
+  getPlayerNames()
 }
 
-function addXandOListener(){
+function addXandOListener() {
   for (var i = boxes.length - 1; i >= 0; i--) {
     boxes[i].addEventListener("click", addXorO);
   }
 }
 
-getPlayerNames();
+function addXorO(event) {
+  if (event.target.innerHTML.length === 0) {
+    if (counter % 2 === 0) {
+      OMoves.push(parseInt(event.target.getAttribute("data-num")));
+      event.target.innerHTML = "O";
+      event.target.setAttribute("class", "O");
+      turnText.innerHTML = "It is X's turn";
+      counter++;
+      checkForWin(OMoves, "O");
+    }
+    else {
+      XMoves.push(parseInt(event.target.getAttribute("data-num")));
+      event.target.innerHTML = "X";
+      event.target.setAttribute("class", "X");
+      turnText.innerHTML = "It is O's turn";
+      counter++;
+      checkForWin(XMoves, "X");
+    }
+    // if the counter is greater than or equal to 10, the game is a draw!
+    if (counter >= 10) {
+      turnText.innerHTML = "Game Over!";
+      document.getElementById('message').innerHTML = "It's a tie, play again?"
+      resetBoard();
+    }
+  }
+}
+
+function addResetListener() {
+  var resetButton = document.getElementById("reset");
+  resetButton.addEventListener("click", resetBoard);
+}
+
+function checkForWin(movesArray, name) {
+  // loop over the first array of winning combinations
+  for (i = 0; i < winningCombinations.length; i++) {
+    // reset the winCounter each time!
+    winCounter = 0;
+    // loop over each individual array
+    for (var j = 0; j < winningCombinations[i].length; j++) {
+      // if the number in winning combo array is === a number in moves array, add to winCounter
+      if (movesArray.indexOf(winningCombinations[i][j]) !== -1) {
+        winCounter++;
+      }
+      // if winCounter === 3 that means all 3 moves are winning combos and game is over!
+      if (winCounter === 3) {
+        document.getElementById('message').innerHTML = "Game over, " + name + " wins!";
+        resetBoard();
+      }
+    }
+  }
+}
+
+function resetBoard() {
+  for (var i = boxes.length - 1; i >= 0; i--) {
+    boxes[i].innerHTML = "";
+    boxes[i].setAttribute("class", "clear");
+  }
+  OMoves = [];
+  XMoves = [];
+  winCounter = 0;
+  counter = 1;
+  turnText.innerHTML = "It is X's turn";
+}
