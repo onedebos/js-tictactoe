@@ -39,7 +39,7 @@ Distributed under the GNU General Public License v3.0. See `LICENSE` for more in
 
 ## To Clone Repo
 
-[Click here](git@github.com:onedebos/js-tictactoe.git)
+[Click here](https://github.com/onedebos/js-tictactoe.git)
 
 <!-- CONTACT -->
 ## Contact
