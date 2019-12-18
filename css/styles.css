@@ -14,10 +14,10 @@ table {
 
 td {
   border: 1px solid #e11212;
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   text-align: center;
-  font-size: 8em;
+  font-size: 4em;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -50,7 +50,7 @@ tfoot tr td {
 }
 
 .X, .O {
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .X {
@@ -112,9 +112,9 @@ button {
   padding: 2em;
 }
 
-.box {
+.form, .turn-text {
   max-width: 400px;
-  margin: 10em auto;
+  margin: 5em auto;
 }
 
 .hide {

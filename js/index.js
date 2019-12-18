@@ -2,61 +2,78 @@
 
 // var turnText = document.querySelector(".playerTurn");
 
-
-
-
-
-
-
 // function addResetListener() {
 //   var resetButton = document.getElementById("reset");
 //   resetButton.addEventListener("click", resetBoard);
 // }
+const addXorO = (event) => {
+  let counter = 1;
 
-
+  let OMoves = [];
+  let XMoves = [];
+  if (event.target.innerHTML.length === 0) {
+    if (counter % 2 === 0) {
+      OMoves.push(parseInt(event.target.getAttribute("data-num")));
+      event.target.innerHTML = "O";
+      event.target.setAttribute("class", "O");
+      turnText.innerHTML = `It is ${p1.name}'s turn`;
+      counter++;
+      gameBoard.checkForWin(OMoves, p2.name);
+    } else {
+      XMoves.push(parseInt(event.target.getAttribute("data-num")));
+      event.target.innerHTML = "X";
+      event.target.setAttribute("class", "X");
+      turnText.innerHTML = `It is ${p2.name}'s turn`;
+      counter++;
+      gameBoard.checkForWin(XMoves, p1.name);
+    }
+    // if the counter is greater than or equal to 10, the game is a draw!
+    if (counter >= 10) {
+      // turnText.innerHTML = "Game Over!";
+      document.getElementById("message").innerHTML =
+        "It's a tie, play again?";
+      // resetBoard();
+    }
+  }
+};
 
 //gameplay
 const game = () => {
   const form = document.querySelector(".form");
   let boxes = document.getElementsByTagName("td");
-  let p1,p2;
-
+  let p1, p2;
+  let turnText = document.querySelector(".turn-text");
 
   const start = () => {
-    
-
     let getPlayerNames = () => {
       let player1 = document.getElementById("name-1").value;
       let player2 = document.getElementById("name-2").value;
-      
-      
+
       if (player1 !== "" && player2 !== "") {
-       p1 =  Player(player1, "X");
-       p2 = Player(player2, "O");
+        p1 = Player(player1, "X");
+        p2 = Player(player2, "O");
         gameBoard.showBoard();
         runGame.hideForm();
         runGame.addXandOListener();
-        runGame.addXorO();        
-        
-      }else{
-          const formContainer = document.querySelector('.box');
-          const div = document.createElement('div');
-          div.classList.add('notification');
-          div.classList.add('is-danger');
-          div.innerHTML =`Enter player names to start game`;
-          formContainer.appendChild(div);
-          setTimeout(()=>document.querySelector('.notification').remove(),3000);
+        runGame.addXorO('click');
+      } else {
+        const formContainer = document.querySelector(".box");
+        const div = document.createElement("div");
+        div.classList.add("notification");
+        div.classList.add("is-danger");
+        div.innerHTML = `Enter player names to start game`;
+        formContainer.appendChild(div);
+        setTimeout(
+          () => document.querySelector(".notification").remove(),
+          3000
+        );
       }
     };
-
-    
-
 
     gameBoard.hideBoard();
     runGame.showForm();
     const startButton = document.querySelector(".start-now");
     startButton.addEventListener("click", getPlayerNames);
-
   };
 
   const showForm = () => {
@@ -64,7 +81,7 @@ const game = () => {
   };
 
   const hideForm = () => {
-    form.style.display = 'none';
+    form.style.display = "none";
   };
 
   //listen for click events on the board
@@ -75,39 +92,9 @@ const game = () => {
   };
 
   //add X or O to the board
-  const addXorO = (event) => {
-    let counter = 1;
-
-    let OMoves = [];
-    let XMoves = [];
-    if (event.target.innerHTML.length === 0) {
-      if (counter % 2 === 0) {
-        OMoves.push(parseInt(event.target.getAttribute("data-num")));
-        event.target.innerHTML = "O";
-        event.target.setAttribute("class", "O");
-        //turntext
-        counter++;
-        gameBoard.checkForWin(OMoves, p2);
-      } else {
-        XMoves.push(parseInt(event.target.getAttribute("data-num")));
-        event.target.innerHTML = "X";
-        event.target.setAttribute("class", "X");
-        // turnText.innerHTML = `It is ${p2}'s turn`;
-        counter++;
-        gameBoard.checkForWin(XMoves, p1);
-      }
-      // if the counter is greater than or equal to 10, the game is a draw!
-      if (counter >= 10) {
-        // turnText.innerHTML = "Game Over!";
-        document.getElementById("message").innerHTML = "It's a tie, play again?";
-        // resetBoard();
-      }
-    }
-  }
-
   
 
-  return { showForm, hideForm, start, addXorO, addXandOListener };
+  return { showForm, hideForm, start, addXandOListener };
 };
 
 //gameboard
@@ -143,16 +130,15 @@ const gameBoard = (() => {
         }
       }
     }
-  }
-  
-
+  };
 
   let board = document.querySelector(".game-board");
-  const hideBoard = () => {board.classList.add("hide");};
-  const showBoard = () => {board.classList.remove("hide");};
- 
-
-
+  const hideBoard = () => {
+    board.classList.add("hide");
+  };
+  const showBoard = () => {
+    board.classList.remove("hide");
+  };
 
   const resetBoard = () => {
     // for (var i = boxes.length - 1; i >= 0; i--) {
@@ -173,13 +159,10 @@ const gameBoard = (() => {
     // turnText.innerHTML = `New game! Let's go!`;
     // start();
   };
-  return { hideBoard, resetBoard,showBoard, checkForWin};
+  return { hideBoard, resetBoard, showBoard, checkForWin };
 })();
 
 const Player = (name, symbol) => {
-  // const getName = () => name;
-  // const getSymbol = () => symbol;
-
   return { name, symbol };
 };
 
@@ -187,4 +170,3 @@ const Player = (name, symbol) => {
 const runGame = game();
 runGame.start();
 // gameBoard.showBoard;
-

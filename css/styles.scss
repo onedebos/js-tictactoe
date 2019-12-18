@@ -12,12 +12,15 @@ body {
   }
   td {
     border: 1px solid rgb(225, 18, 18);
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     text-align: center;
-    font-size: 8em;
+    font-size: 4em;
     box-sizing:border-box;
+ 
   }
+
+
   
   td:hover{
     cursor:pointer;
@@ -50,7 +53,7 @@ body {
 //   }
   
   .X, .O {
-    border-radius: 10px;
+    border-radius: 5px;
   }
   .X {
     background: red;
@@ -121,10 +124,10 @@ body {
 //     padding:1em;
 // }
 
-.box{
+.form, .turn-text{
     
     max-width:400px;
-    margin: 10em auto;
+    margin: 5em auto;
 
 }
 
@@ -137,3 +140,4 @@ display: none;
 .show{
     display: block;
 }
+
