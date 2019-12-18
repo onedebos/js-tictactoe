@@ -94,54 +94,68 @@
 //   }
 // }
 
+const game = () => {
+  const form = document.querySelector(".form");
 
-
-
-const game = (() =>{
- const form = document.querySelector('.form');
- 
-
- const start = () => {
+  const start = () => {
     let getPlayerNames = () => {
-      let player1 = document.getElementById('name-1').value;
-      let player2 = document.getElementById('name-2').value;
-      Player(player1, player2);
-      }
+      let player1 = document.getElementById("name-1").value;
+      let player2 = document.getElementById("name-2").value;
 
-   gameBoard.hideBoard(); 
-   runGame.showForm();
-   const startButton = document.querySelector('.start-now');
-   startButton.addEventListener('click', getPlayerNames);
-    
- }
+      if (player1 !== "" && player2 !== "") {
+        Player(player1, "X");
+        Player(player2, "O");
+        gameBoard.showBoard();
+        runGame.hideForm();        
+        
+      }else{
+          const formContainer = document.querySelector('.box');
+          const div = document.createElement('div');
+          div.classList.add('notification');
+          div.classList.add('is-danger');
+          div.innerHTML =`Enter player names to start game`;
+          formContainer.appendChild(div);
+          setTimeout(()=>document.querySelector('.notification').remove(),3000);
+      }
+    };
+
+    gameBoard.hideBoard();
+    runGame.showForm();
+    const startButton = document.querySelector(".start-now");
+    startButton.addEventListener("click", getPlayerNames);
+
+  };
 
   const showForm = () => {
-      form.classList.remove('hide');     
-      form.classList.add('show');   
-      console.log("show form");  
-    }
+    form.classList.add("show");
+    console.log("show form");
+  };
 
-    const hideForm = () => {
-      form.classList.add('hide');
-      console.log("hidden");
-    }
+  const hideForm = () => {
+    form.style.display = 'none';
+  };
 
-    return {showForm, hideForm, start};
-});
+  return { showForm, hideForm, start };
+};
 
 const gameBoard = (() => {
+  let board = document.querySelector(".game-board");
   const hideBoard = () => {
-    let board = document.querySelector('.game-board');
-    board.classList.add('hide');
+    board.classList.add("hide");
     console.log("hide board");
-  }
+  };
 
-  const resetBoard = () =>  {
+  const showBoard = () => {
+    board.classList.remove("hide");
+
+    console.log("show board");
+  };
+
+  const resetBoard = () => {
     // for (var i = boxes.length - 1; i >= 0; i--) {
     //   boxes[i].innerHTML = "";
     //   boxes[i].setAttribute("class", "clear");
     // }
-    
     // //reset input fields
     // let fieldsToClear = document.getElementsByClassName("input");
     // for (let i = 0; i < fieldsToClear.length; i++) {
@@ -156,18 +170,16 @@ const gameBoard = (() => {
     // turnText.innerHTML = `New game! Let's go!`;
     // start();
   };
-  return {hideBoard, resetBoard};
+  return { hideBoard, resetBoard,showBoard };
 })();
 
-const Player = (name, symbol) =>{
-  const getName = () => name;
-  const getSymbol = () => symbol; 
+const Player = (name, symbol) => {
+  // const getName = () => name;
+  // const getSymbol = () => symbol;
 
-  return {getName, getSymbol};
+  return { name, symbol };
 };
 
 //gameplay
 const runGame = game();
 runGame.start();
-
-
