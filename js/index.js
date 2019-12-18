@@ -1,112 +1,42 @@
 // window.onload = start;
-// var boxes = document.getElementsByTagName("td");
+
 // var turnText = document.querySelector(".playerTurn");
-// var counter = 1;
-// var winCounter = 0;
-// var OMoves = [];
-// var XMoves = [];
-// const submitBtn = document.querySelector(".start-now");
-// let player1 = "";
-// let player2 = "";
 
-// submitBtn.onclick = () => {
-//   player1 = document.querySelector("#name-1").value;
-//   player2 = document.querySelector("#name-2").value;
 
-//   start();
-// };
 
-// var winningCombinations = [
-//   [0, 1, 2],
-//   [3, 4, 5],
-//   [6, 7, 8],
-//   [0, 3, 6],
-//   [1, 4, 7],
-//   [2, 5, 8],
-//   [0, 4, 8],
-//   [2, 4, 6]
-// ];
 
-// function start() {
-//   if (player1 == "" || player2 == "") {
-//     alert("You must enter player names to start!");
-//   } else {
-//     addXandOListener();
-//     addResetListener();
-//   }
-// }
 
-// function addXandOListener() {
-//   for (var i = boxes.length - 1; i >= 0; i--) {
-//     boxes[i].addEventListener("click", addXorO);
-//   }
-// }
 
-// function addXorO(event) {
-//   if (event.target.innerHTML.length === 0) {
-//     if (counter % 2 === 0) {
-//       OMoves.push(parseInt(event.target.getAttribute("data-num")));
-//       event.target.innerHTML = "O";
-//       event.target.setAttribute("class", "O");
-//       turnText.innerHTML = `It is ${player1}'s turn`;
-//       counter++;
-//       checkForWin(OMoves, player2);
-//     } else {
-//       XMoves.push(parseInt(event.target.getAttribute("data-num")));
-//       event.target.innerHTML = "X";
-//       event.target.setAttribute("class", "X");
-//       turnText.innerHTML = `It is ${player2}'s turn`;
-//       counter++;
-//       checkForWin(XMoves, player1);
-//     }
-//     // if the counter is greater than or equal to 10, the game is a draw!
-//     if (counter >= 10) {
-//       turnText.innerHTML = "Game Over!";
-//       document.getElementById("message").innerHTML = "It's a tie, play again?";
-//       resetBoard();
-//     }
-//   }
-// }
 
 // function addResetListener() {
 //   var resetButton = document.getElementById("reset");
 //   resetButton.addEventListener("click", resetBoard);
 // }
 
-// function checkForWin(movesArray, name) {
-//   // loop over the first array of winning combinations
-//   for (i = 0; i < winningCombinations.length; i++) {
-//     // reset the winCounter each time!
-//     winCounter = 0;
-//     // loop over each individual array
-//     for (var j = 0; j < winningCombinations[i].length; j++) {
-//       // if the number in winning combo array is === a number in moves array, add to winCounter
-//       if (movesArray.indexOf(winningCombinations[i][j]) !== -1) {
-//         winCounter++;
-//       }
-//       // if winCounter === 3 that means all 3 moves are winning combos and game is over!
-//       if (winCounter === 3) {
-//         document.getElementById("message").innerHTML =
-//           "Game over, " + name + " wins!";
-//         resetBoard();
-//       }
-//     }
-//   }
-// }
 
+
+//gameplay
 const game = () => {
   const form = document.querySelector(".form");
+  let boxes = document.getElementsByTagName("td");
+  let p1,p2;
+
 
   const start = () => {
+    
+
     let getPlayerNames = () => {
       let player1 = document.getElementById("name-1").value;
       let player2 = document.getElementById("name-2").value;
-
+      
+      
       if (player1 !== "" && player2 !== "") {
-        Player(player1, "X");
-        Player(player2, "O");
+       p1 =  Player(player1, "X");
+       p2 = Player(player2, "O");
         gameBoard.showBoard();
-        runGame.hideForm();        
+        runGame.hideForm();
+        runGame.addXandOListener();
+        runGame.addXorO();        
         
       }else{
           const formContainer = document.querySelector('.box');
@@ -119,6 +49,9 @@ const game = () => {
       }
     };
 
+    
+
+
     gameBoard.hideBoard();
     runGame.showForm();
     const startButton = document.querySelector(".start-now");
@@ -128,28 +61,98 @@ const game = () => {
 
   const showForm = () => {
     form.classList.add("show");
-    console.log("show form");
   };
 
   const hideForm = () => {
     form.style.display = 'none';
   };
 
-  return { showForm, hideForm, start };
+  //listen for click events on the board
+  const addXandOListener = () => {
+    for (let i = boxes.length - 1; i >= 0; i--) {
+      boxes[i].addEventListener("click", addXorO);
+    }
+  };
+
+  //add X or O to the board
+  const addXorO = (event) => {
+    let counter = 1;
+
+    let OMoves = [];
+    let XMoves = [];
+    if (event.target.innerHTML.length === 0) {
+      if (counter % 2 === 0) {
+        OMoves.push(parseInt(event.target.getAttribute("data-num")));
+        event.target.innerHTML = "O";
+        event.target.setAttribute("class", "O");
+        //turntext
+        counter++;
+        gameBoard.checkForWin(OMoves, p2);
+      } else {
+        XMoves.push(parseInt(event.target.getAttribute("data-num")));
+        event.target.innerHTML = "X";
+        event.target.setAttribute("class", "X");
+        // turnText.innerHTML = `It is ${p2}'s turn`;
+        counter++;
+        gameBoard.checkForWin(XMoves, p1);
+      }
+      // if the counter is greater than or equal to 10, the game is a draw!
+      if (counter >= 10) {
+        // turnText.innerHTML = "Game Over!";
+        document.getElementById("message").innerHTML = "It's a tie, play again?";
+        // resetBoard();
+      }
+    }
+  }
+
+  
+
+  return { showForm, hideForm, start, addXorO, addXandOListener };
 };
 
+//gameboard
 const gameBoard = (() => {
+  let winCounter = 0;
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  const checkForWin = (movesArray, name) => {
+    // loop over the first array of winning combinations
+    for (let i = 0; i < winningCombinations.length; i++) {
+      // reset the winCounter each time!
+      winCounter = 0;
+      // loop over each individual array
+      for (let j = 0; j < winningCombinations[i].length; j++) {
+        // if the number in winning combo array is === a number in moves array, add to winCounter
+        if (movesArray.indexOf(winningCombinations[i][j]) !== -1) {
+          winCounter++;
+        }
+        // if winCounter === 3 that means all 3 moves are winning combos and game is over!
+        if (winCounter === 3) {
+          document.getElementById("message").innerHTML =
+            "Game over, " + name + " wins!";
+          resetBoard();
+        }
+      }
+    }
+  }
+  
+
+
   let board = document.querySelector(".game-board");
-  const hideBoard = () => {
-    board.classList.add("hide");
-    console.log("hide board");
-  };
+  const hideBoard = () => {board.classList.add("hide");};
+  const showBoard = () => {board.classList.remove("hide");};
+ 
 
-  const showBoard = () => {
-    board.classList.remove("hide");
 
-    console.log("show board");
-  };
 
   const resetBoard = () => {
     // for (var i = boxes.length - 1; i >= 0; i--) {
@@ -170,7 +173,7 @@ const gameBoard = (() => {
     // turnText.innerHTML = `New game! Let's go!`;
     // start();
   };
-  return { hideBoard, resetBoard,showBoard };
+  return { hideBoard, resetBoard,showBoard, checkForWin};
 })();
 
 const Player = (name, symbol) => {
@@ -183,3 +186,5 @@ const Player = (name, symbol) => {
 //gameplay
 const runGame = game();
 runGame.start();
+// gameBoard.showBoard;
+

@@ -1,63 +1,127 @@
-body{
-    font-size: 1em;
-}
-.row{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-.cell{
-    border: 2px solid white;
-    height:100px;
-    width:100px;
-
+body {
+  background: #000;
+  height: 100vh;
 }
 
-.board{
-    background-color: burlywood;
-    margin: 1em auto;
-    width:400px;
-    height:400px;
-    padding: 2em;
+.main-container {
+  padding-top: 2em;
 }
 
-#panel{
-    background-color: bisque;
-    margin: 0 auto;
-    width: 400px;
-    height: 70px;
+table {
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
-button{
-
-    text-align:center;
+td {
+  border: 1px solid #e11212;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  font-size: 8em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-.button-start{
-    margin:0 auto;
-    width: 100px;
-    padding:1em;
+td:hover {
+  cursor: pointer;
 }
 
-.box{
-    
-    max-width:400px;
-    margin: 10em auto;
-
+td:first-child {
+  border-left: none;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
+td:last-child {
+  border-right: none;
 }
 
-
-.hide{
-display: none;
+td:nth-child(2n+2) {
+  border-right: none;
+  border-left: none;
 }
 
-.show{
-    display: block;
+thead tr td {
+  border-top: none;
+  border-bottom: none;
 }
+
+tfoot tr td {
+  border-top: none;
+  border-bottom: none;
+}
+
+.X, .O {
+  border-radius: 10px;
+}
+
+.X {
+  background: red;
+}
+
+.O {
+  background: blue;
+}
+
+.clear {
+  background: #000;
+}
+
+#reset {
+  color: red;
+}
+
+button {
+  background: #000;
+}
+
+#reset {
+  padding: 5px;
+  width: 400px;
+  font-size: 1.5em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#reset:hover {
+  background: #2d0909;
+  border-color: white;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cell {
+  border: 2px solid white;
+  height: 100px;
+  width: 100px;
+}
+
+.board {
+  background-color: burlywood;
+  margin: 1em auto;
+  width: 400px;
+  height: 400px;
+  padding: 2em;
+}
+
+.box {
+  max-width: 400px;
+  margin: 10em auto;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+/*# sourceMappingURL=styles.css.map */
