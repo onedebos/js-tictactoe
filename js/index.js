@@ -6,41 +6,10 @@
 //   var resetButton = document.getElementById("reset");
 //   resetButton.addEventListener("click", resetBoard);
 // }
-const addXorO = (event) => {
-  let counter = 1;
-
-  let OMoves = [];
-  let XMoves = [];
-  if (event.target.innerHTML.length === 0) {
-    if (counter % 2 === 0) {
-      OMoves.push(parseInt(event.target.getAttribute("data-num")));
-      event.target.innerHTML = "O";
-      event.target.setAttribute("class", "O");
-      turnText.innerHTML = `It is ${p1.name}'s turn`;
-      counter++;
-      gameBoard.checkForWin(OMoves, p2.name);
-    } else {
-      XMoves.push(parseInt(event.target.getAttribute("data-num")));
-      event.target.innerHTML = "X";
-      event.target.setAttribute("class", "X");
-      turnText.innerHTML = `It is ${p2.name}'s turn`;
-      counter++;
-      gameBoard.checkForWin(XMoves, p1.name);
-    }
-    // if the counter is greater than or equal to 10, the game is a draw!
-    if (counter >= 10) {
-      // turnText.innerHTML = "Game Over!";
-      document.getElementById("message").innerHTML =
-        "It's a tie, play again?";
-      // resetBoard();
-    }
-  }
-};
 
 //gameplay
 const game = () => {
   const form = document.querySelector(".form");
-  let boxes = document.getElementsByTagName("td");
   let p1, p2;
   let turnText = document.querySelector(".turn-text");
 
@@ -55,7 +24,7 @@ const game = () => {
         gameBoard.showBoard();
         runGame.hideForm();
         runGame.addXandOListener();
-        runGame.addXorO('click');
+        runGame.addXorO();
       } else {
         const formContainer = document.querySelector(".box");
         const div = document.createElement("div");
@@ -85,16 +54,43 @@ const game = () => {
   };
 
   //listen for click events on the board
-  const addXandOListener = () => {
-    for (let i = boxes.length - 1; i >= 0; i--) {
-      boxes[i].addEventListener("click", addXorO);
-    }
-  };
+  const addXandOListener = () => {};
 
   //add X or O to the board
-  
+  const addXorO = () => {
+    let counter = 1;
+    let OMoves = [];
+    let XMoves = [];
+    let space = document.querySelector(".game-board");
+    space.addEventListener("click", event => {
+      if (event.target.innerHTML.length === 0) {
+        if (counter % 2 === 0) {
+          OMoves.push(parseInt(event.target.getAttribute("data-num")));
+          event.target.innerHTML = "O";
+          event.target.setAttribute("class", "O");
+          turnText.innerHTML = `It is ${p1.name}'s turn`;
+          counter++;
+          gameBoard.checkForWin(OMoves, p2.name);
+        } else {
+          XMoves.push(parseInt(event.target.getAttribute("data-num")));
+          event.target.innerHTML = "X";
+          event.target.setAttribute("class", "X");
+          turnText.innerHTML = `It is ${p2.name}'s turn`;
+          counter++;
+          gameBoard.checkForWin(XMoves, p1.name);
+        }
+        // if the counter is greater than or equal to 10, the game is a draw!
+        if (counter >= 10) {
+          // turnText.innerHTML = "Game Over!";
+          document.getElementById("message").innerHTML =
+            "It's a tie, play again?";
+          // resetBoard();
+        }
+      }
+    });
+  };
 
-  return { showForm, hideForm, start, addXandOListener };
+  return { showForm, hideForm, start, addXandOListener, addXorO };
 };
 
 //gameboard
@@ -124,7 +120,7 @@ const gameBoard = (() => {
         }
         // if winCounter === 3 that means all 3 moves are winning combos and game is over!
         if (winCounter === 3) {
-          document.getElementById("message").innerHTML =
+          document.querySelector(".turn-text").innerHTML =
             "Game over, " + name + " wins!";
           resetBoard();
         }
