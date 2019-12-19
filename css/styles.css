@@ -10,14 +10,15 @@ body {
 table {
   margin: 0 auto;
   border-radius: 10px;
+  text-align: center;
 }
 
-td {
+table td {
   border: 1px solid #e11212;
   width: 100px;
   height: 100px;
   text-align: center;
-  font-size: 4em;
+  font-size: 2.5em;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -54,11 +55,11 @@ tfoot tr td {
 }
 
 .X {
-  background: red;
+  background: #ffdd57;
 }
 
 .O {
-  background: blue;
+  background: white;
 }
 
 .clear {

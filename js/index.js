@@ -1,11 +1,4 @@
-// window.onload = start;
 
-// var turnText = document.querySelector(".playerTurn");
-
-// function addResetListener() {
-//   var resetButton = document.getElementById("reset");
-//   resetButton.addEventListener("click", resetBoard);
-// }
 
 //gameplay
 const game = () => {
@@ -23,7 +16,6 @@ const game = () => {
         p2 = Player(player2, "O");
         gameBoard.showBoard();
         runGame.hideForm();
-        runGame.addXandOListener();
         runGame.addXorO();
       } else {
         const formContainer = document.querySelector(".box");
@@ -53,8 +45,7 @@ const game = () => {
     form.style.display = "none";
   };
 
-  //listen for click events on the board
-  const addXandOListener = () => {};
+
 
   //add X or O to the board
   const addXorO = () => {
@@ -81,16 +72,14 @@ const game = () => {
         }
         // if the counter is greater than or equal to 10, the game is a draw!
         if (counter >= 10) {
-          // turnText.innerHTML = "Game Over!";
-          document.getElementById("message").innerHTML =
-            "It's a tie, play again?";
+          turnText.innerHTML = "It's a tie!";
           // resetBoard();
         }
       }
     });
   };
 
-  return { showForm, hideForm, start, addXandOListener, addXorO };
+  return { showForm, hideForm, start, addXorO };
 };
 
 //gameboard
@@ -120,10 +109,14 @@ const gameBoard = (() => {
         }
         // if winCounter === 3 that means all 3 moves are winning combos and game is over!
         if (winCounter === 3) {
-          document.querySelector(".turn-text").innerHTML =
-            "Game over, " + name + " wins!";
-          resetBoard();
+         const turnText = document.querySelector(".turn-text");
+         turnText.innerHTML =`Game over, ${name} wins!, Let's Play Again.`;
+         turnText.classList.add('is-danger');
+         turnText.classList.add('notification');
+
+
         }
+
       }
     }
   };
@@ -137,10 +130,15 @@ const gameBoard = (() => {
   };
 
   const resetBoard = () => {
-    // for (var i = boxes.length - 1; i >= 0; i--) {
-    //   boxes[i].innerHTML = "";
-    //   boxes[i].setAttribute("class", "clear");
-    // }
+
+    let jepa = document.getElementsByTagName('td');
+      for(let i=0;i<jepa.length;i++){
+        jepa[i].innerHTML = "";
+        jepa[i].setAttribute("class", "clear");
+      }
+      runGame.start();
+    gameBoard.hideBoard();
+    runGame.showForm();
     // //reset input fields
     // let fieldsToClear = document.getElementsByClassName("input");
     // for (let i = 0; i < fieldsToClear.length; i++) {
@@ -153,7 +151,7 @@ const gameBoard = (() => {
     // winCounter = 0;
     // counter = 1;
     // turnText.innerHTML = `New game! Let's go!`;
-    // start();
+    
   };
   return { hideBoard, resetBoard, showBoard, checkForWin };
 })();
@@ -165,4 +163,4 @@ const Player = (name, symbol) => {
 //gameplay
 const runGame = game();
 runGame.start();
-// gameBoard.showBoard;
+

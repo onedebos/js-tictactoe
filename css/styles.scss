@@ -3,23 +3,26 @@ body {
     height: 100vh;
   }
 
+
+
   .main-container{
       padding-top:2em;
   }
   table {
     margin: 0 auto;
     border-radius:10px;
-  }
-  td {
-    border: 1px solid rgb(225, 18, 18);
-    width: 100px;
-    height: 100px;
     text-align: center;
-    font-size: 4em;
-    box-sizing:border-box;
- 
+  
+    td {
+      border: 1px solid rgb(225, 18, 18);
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      font-size: 2.5em;
+      box-sizing:border-box;
+  
+    }
   }
-
 
   
   td:hover{
@@ -48,18 +51,15 @@ body {
     border-bottom: none;
   }
   
-//   .container, .playerTurn {
-//     text-align: center;
-//   }
   
   .X, .O {
     border-radius: 5px;
   }
   .X {
-    background: red;
+    background:#ffdd57;
   }
   .O {
-    background: blue;
+    background: white;
   }
   
   .clear {
@@ -106,23 +106,7 @@ body {
     padding: 2em;
 }
 
-// #panel{
-//     background-color: bisque;
-//     margin: 0 auto;
-//     width: 400px;
-//     height: 70px;
-// }
 
-// button{
-
-//     text-align:center;
-// }
-
-// .button-start{
-//     margin:0 auto;
-//     width: 100px;
-//     padding:1em;
-// }
 
 .form, .turn-text{
     
