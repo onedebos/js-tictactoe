@@ -1,0 +1,129 @@
+body {
+    background: #000;
+    height: 100vh;
+  }
+
+
+
+  .main-container{
+      padding-top:2em;
+  }
+  table {
+    margin: 0 auto;
+    border-radius:10px;
+    text-align: center;
+  
+    td {
+      border: 1px solid rgb(225, 18, 18);
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      font-size: 2.5em;
+      box-sizing:border-box;
+      font-weight: 600;
+  
+    }
+  }
+
+  
+  td:hover{
+    cursor:pointer;
+  }
+  
+  td:first-child{
+    border-left: none;
+  }
+  td:last-child{
+    border-right: none;
+  }
+  
+  td:nth-child(2n+2){
+    border-right: none;
+    border-left: none;
+  }
+  
+  thead tr td{
+    border-top:none;
+    border-bottom: none;
+  }
+  
+  tfoot tr td{
+    border-top:none;
+    border-bottom: none;
+  }
+  
+  
+  .X, .O {
+    border-radius: 5px;
+  }
+  .X {
+    background:#ffdd57;
+  }
+  .O {
+    background: white;
+  }
+  
+  .clear {
+    background: #ffffff;
+  }
+  #reset {
+    color:red
+  }
+  button {
+    background: #000;
+  }
+  #reset {
+    padding: 5px;
+    width: 400px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  #reset:hover{
+    background: rgb(45, 9, 9);
+    border-color: white;
+  }
+
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.cell{
+    border: 2px solid white;
+    height:100px;
+    width:100px;
+
+}
+
+
+
+
+.form, .turn-text{
+    
+    max-width:400px;
+    margin: 3em auto;
+
+}
+
+
+
+
+
+.hide{
+display: none;
+}
+
+.show{
+    display: block;
+}
+
+.reset-btn{
+  margin: 0 37em;
+
+
+
+}

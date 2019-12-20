@@ -1,114 +1,187 @@
-window.onload = start;
-var boxes = document.getElementsByTagName("td");
-var turnText = document.querySelector(".playerTurn");
-var counter = 1;
-var winCounter = 0;
-var OMoves = [];
-var XMoves = [];
-const submitBtn = document.querySelector('.start-now');
-let player1 = '';
-let player2 = '';
+//  gameplay
+const Game = (p1, p2, turnText, counter, space) => {
+  const form = document.querySelector('.form');
+  Game.space = document.querySelector('.game-board');
 
- submitBtn.onclick = () => {
-     player1 = document.querySelector('#name-1').value;
-     player2 = document.querySelector('#name-2').value;
+  Game.turnText = document.querySelector('.turn-text');
 
-    start();
-}
+  const start = () => {
+    GameBoard.resetBoard();
+    const clearPlayerNames = () => {
+      const fieldsToClear = document.getElementsByClassName('input');
+      const fieldsArr = [...fieldsToClear];
+      fieldsArr.forEach((item) => {
+        item.value = '';
+      });
+    };
+    const getPlayerNames = () => {
+      const player1 = document.getElementById('name-1').value;
+      const player2 = document.getElementById('name-2').value;
 
-var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-
-
-
-
-
-function start() {
-
-    if(player1 == '' || player2 == ''){
-        alert("You must enter player names to start!");
-    }else{
-        addXandOListener();
-  addResetListener();
-    }
-  
- 
-}
-
-function addXandOListener() {
-  for (var i = boxes.length - 1; i >= 0; i--) {
-    boxes[i].addEventListener("click", addXorO);
-  }
-}
-
-function addXorO(event) {
-  if (event.target.innerHTML.length === 0) {
-    if (counter % 2 === 0) {
-      OMoves.push(parseInt(event.target.getAttribute("data-num")));
-      event.target.innerHTML = "O";
-      event.target.setAttribute("class", "O");
-      turnText.innerHTML = `It is ${player1}'s turn`;
-      counter++;
-      checkForWin(OMoves, player2);
-    }
-    else {
-      XMoves.push(parseInt(event.target.getAttribute("data-num")));
-      event.target.innerHTML = "X";
-      event.target.setAttribute("class", "X");
-      turnText.innerHTML = `It is ${player2}'s turn`;
-      counter++;
-      checkForWin(XMoves, player1);
-    }
-    // if the counter is greater than or equal to 10, the game is a draw!
-    if (counter >= 10) {
-      turnText.innerHTML = "Game Over!";
-      document.getElementById('message').innerHTML = "It's a tie, play again?"
-      resetBoard();
-    }
-  }
-}
-
-function addResetListener() {
-  var resetButton = document.getElementById("reset");
-  resetButton.addEventListener("click", resetBoard);
-}
-
-function checkForWin(movesArray, name) {
-  // loop over the first array of winning combinations
-  for (i = 0; i < winningCombinations.length; i++) {
-    // reset the winCounter each time!
-    winCounter = 0;
-    // loop over each individual array
-    for (var j = 0; j < winningCombinations[i].length; j++) {
-      // if the number in winning combo array is === a number in moves array, add to winCounter
-      if (movesArray.indexOf(winningCombinations[i][j]) !== -1) {
-        winCounter++;
+      if (player1 !== '' && player2 !== '') {
+        Game.p1 = Player(player1, 'X');
+        Game.p2 = Player(player2, 'O');
+        GameBoard.showBoard();
+        runGame.hideForm();
+        runGame.addXorO();
+        GameBoard.restartBtn();
+        clearPlayerNames();
+      } else {
+        const formContainer = document.querySelector('.box-1');
+        const div = document.createElement('div');
+        div.classList.add('notification');
+        div.classList.add('is-danger');
+        div.innerHTML = 'Enter player names to start game';
+        formContainer.appendChild(div);
+        setTimeout(() => document.querySelector('.notification').remove(), 3000);
       }
-      // if winCounter === 3 that means all 3 moves are winning combos and game is over!
-      if (winCounter === 3) {
-        document.getElementById('message').innerHTML = "Game over, " + name + " wins!";
-        resetBoard();
+    };
+
+    GameBoard.hideBoard();
+    runGame.showForm();
+    const startButton = document.querySelector('.start-now');
+    startButton.addEventListener('click', getPlayerNames);
+  };
+
+  const showForm = () => {
+    form.classList.add('show');
+  };
+
+  const hideForm = () => {
+    form.style.display = 'none';
+  };
+
+  //  add X or O to the board
+  const addXorO = () => {
+    Game.counter = 1;
+    GameBoard.oMoves = [];
+    GameBoard.xMoves = [];
+
+    Game.space.addEventListener('click', (event) => {
+      if (event.target.innerHTML.length === 0) {
+        if (Game.counter % 2 === 0) {
+          GameBoard.oMoves.push(parseInt(event.target.getAttribute('data-num')));
+          event.target.innerHTML = 'O';
+          event.target.setAttribute('class', 'O');
+          Game.turnText.innerHTML = `It is ${Game.p1.getName()}'s turn`;
+          Game.counter += 1;
+          GameBoard.checkForWin(GameBoard.oMoves, Game.p2.getName(), 'danger');
+        } else {
+          GameBoard.xMoves.push(parseInt(event.target.getAttribute('data-num')));
+          event.target.innerHTML = 'X';
+          event.target.setAttribute('class', 'X');
+          Game.turnText.innerHTML = `It is ${Game.p2.getName()}'s turn`;
+          Game.counter += 1;
+          GameBoard.checkForWin(GameBoard.xMoves, Game.p1.getName(), 'warning');
+        }
+        // if the counter is greater than or equal to 10, the game is a draw!
+        if (Game.counter >= 10) {
+          Game.turnText.innerHTML = 'It\'s a tie!';
+          setTimeout(GameBoard.resetBoard, 1500);
+        }
+      }
+    });
+  };
+
+  return {
+    showForm,
+    hideForm,
+    start,
+    addXorO,
+    p1,
+    p2,
+    turnText,
+    counter,
+    space,
+  };
+};
+
+//  GameBoard
+const GameBoard = ((oMoves, xMoves) => {
+  let winCounter = 0;
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  const checkForWin = (movesArray, name, color) => {
+    // loop over the first array of winning combinations
+    for (let i = 0; i < winningCombinations.length; i += 1) {
+      // reset the winCounter each time!
+      winCounter = 0;
+      // loop over each individual array
+      for (let j = 0; j < winningCombinations[i].length; j += 1) {
+        // if the number in winning combo array is === a number in moves array, add to winCounter
+        if (movesArray.indexOf(winningCombinations[i][j]) !== -1) {
+          winCounter += 1;
+        }
+        // if winCounter === 3 that means all 3 moves are winning combos and game is over!
+        if (winCounter === 3) {
+          // const turnText = document.querySelector('.turn-text');
+          Game.turnText.innerHTML = `Game over, ${name} wins!.`;
+          Game.turnText.classList.add(`is-${color}`);
+          Game.turnText.classList.add('notification');
+          setTimeout(GameBoard.resetBoard, 1500);
+        }
       }
     }
-  }
-}
+  };
 
-function resetBoard() {
-  for (var i = boxes.length - 1; i >= 0; i--) {
-    boxes[i].innerHTML = "";
-    boxes[i].setAttribute("class", "clear");
-  }
+  const board = document.querySelector('.game-board');
+  const resetBtn = document.querySelector('.reset-btn');
+  const hideBoard = () => {
+    board.classList.add('hide');
+    resetBtn.style.display = 'none';
+  };
+  const showBoard = () => {
+    board.classList.remove('hide');
+    resetBtn.style.display = 'block';
+  };
 
-  let fieldsToClear = document.getElementsByClassName("input");
-  for (let i = 0; i < fieldsToClear.length; i++) {
-    fieldsToClear[i].value = "";
-  }
-  player1 = '';
-  player2='';
-  OMoves = [];
-  XMoves = [];
-  winCounter = 0;
-  counter = 1;
-  turnText.innerHTML = `New game! Let's go!`;
-  start();
-}
+  const restartBtn = () => {
+    resetBtn.addEventListener('click', resetBoard);
+  };
+
+  const resetBoard = () => {
+    Game.counter = 1;
+    Game.turnText.classList.remove('is-danger');
+    Game.turnText.classList.remove('notification');
+    Game.turnText.innerHTML = 'Let\'s play again!';
+    const cells = document.getElementsByTagName('td');
+    const cellsArr = [...cells];
+    cellsArr.forEach((cell) => {
+      cell.innerHTML = '';
+      cell.setAttribute('class', 'clear');
+    });
+
+    GameBoard.xMoves = [];
+    GameBoard.oMoves = [];
+    Game.space.removeEventListener('click', () => {});
+  };
+  return {
+    hideBoard,
+    resetBoard,
+    showBoard,
+    checkForWin,
+    restartBtn,
+    oMoves,
+    xMoves,
+  };
+})();
+
+const Player = (name, symbol) => {
+  const getName = () => name;
+  const getSymbol = () => symbol;
+
+  return { getName, getSymbol };
+};
+
+//  gameplay
+const runGame = Game();
+runGame.start();
