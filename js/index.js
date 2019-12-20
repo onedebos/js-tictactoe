@@ -1,5 +1,3 @@
-/* eslint-disable radix */
-/* eslint-disable no-use-before-define */
 //  gameplay
 const Game = (p1, p2, turnText, counter, space) => {
   const form = document.querySelector('.form');
