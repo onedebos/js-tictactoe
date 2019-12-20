@@ -65,16 +65,16 @@ const Game = (p1, p2, turnText, counter, space) => {
           GameBoard.oMoves.push(parseInt(event.target.getAttribute('data-num')));
           event.target.innerHTML = 'O';
           event.target.setAttribute('class', 'O');
-          Game.turnText.innerHTML = `It is ${Game.p1.name}'s turn`;
+          Game.turnText.innerHTML = `It is ${Game.p1.getName()}'s turn`;
           Game.counter += 1;
-          GameBoard.checkForWin(GameBoard.oMoves, Game.p2.name, 'danger');
+          GameBoard.checkForWin(GameBoard.oMoves, Game.p2.getName(), 'danger');
         } else {
           GameBoard.xMoves.push(parseInt(event.target.getAttribute('data-num')));
           event.target.innerHTML = 'X';
           event.target.setAttribute('class', 'X');
-          Game.turnText.innerHTML = `It is ${Game.p2.name}'s turn`;
+          Game.turnText.innerHTML = `It is ${Game.p2.getName()}'s turn`;
           Game.counter += 1;
-          GameBoard.checkForWin(GameBoard.xMoves, Game.p1.name, 'warning');
+          GameBoard.checkForWin(GameBoard.xMoves, Game.p1.getName(), 'warning');
         }
         // if the counter is greater than or equal to 10, the game is a draw!
         if (Game.counter >= 10) {
@@ -178,7 +178,10 @@ const GameBoard = ((oMoves, xMoves) => {
 })();
 
 const Player = (name, symbol) => {
-  return { name, symbol };
+  const getName = () => name;
+  const getSymbol = () => symbol;
+
+  return {getName, getSymbol};
 };
 
 //  gameplay
