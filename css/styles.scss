@@ -20,6 +20,7 @@ body {
       text-align: center;
       font-size: 2.5em;
       box-sizing:border-box;
+      font-weight: 600;
   
     }
   }
@@ -63,7 +64,7 @@ body {
   }
   
   .clear {
-    background: #000;
+    background: #ffffff;
   }
   #reset {
     color:red
@@ -98,22 +99,17 @@ body {
 
 }
 
-.board{
-    background-color: burlywood;
-    margin: 1em auto;
-    width:400px;
-    height:400px;
-    padding: 2em;
-}
 
 
 
 .form, .turn-text{
     
     max-width:400px;
-    margin: 5em auto;
+    margin: 3em auto;
 
 }
+
+
 
 
 
@@ -125,3 +121,9 @@ display: none;
     display: block;
 }
 
+.reset-btn{
+  margin: 0 37em;
+
+
+
+}
