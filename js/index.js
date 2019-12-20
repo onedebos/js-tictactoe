@@ -66,19 +66,19 @@ const Game = (p1, p2, turnText, counter, space) => {
           event.target.innerHTML = 'O';
           event.target.setAttribute('class', 'O');
           Game.turnText.innerHTML = `It is ${Game.p1.name}'s turn`;
-          Game.counter++;
+          Game.counter += 1;
           GameBoard.checkForWin(GameBoard.oMoves, Game.p2.name, 'danger');
         } else {
           GameBoard.xMoves.push(parseInt(event.target.getAttribute('data-num')));
           event.target.innerHTML = 'X';
           event.target.setAttribute('class', 'X');
           Game.turnText.innerHTML = `It is ${Game.p2.name}'s turn`;
-          Game.counter++;
+          Game.counter += 1;
           GameBoard.checkForWin(GameBoard.xMoves, Game.p1.name, 'warning');
         }
         // if the counter is greater than or equal to 10, the game is a draw!
         if (Game.counter >= 10) {
-          Game.turnText.innerHTML = "It's a tie!";
+          Game.turnText.innerHTML = `It's a tie!`;
           setTimeout(GameBoard.resetBoard, 1500);
         }
       }
@@ -118,14 +118,14 @@ const GameBoard = ((oMoves, xMoves) => {
       // reset the winCounter each time!
       winCounter = 0;
       // loop over each individual array
-      for (let j = 0; j < winningCombinations[i].length; j++) {
+      for (let j = 0; j < winningCombinations[i].length; j += 1) {
         // if the number in winning combo array is === a number in moves array, add to winCounter
         if (movesArray.indexOf(winningCombinations[i][j]) !== -1) {
-          winCounter++;
+          winCounter += 1;
         }
         // if winCounter === 3 that means all 3 moves are winning combos and game is over!
         if (winCounter === 3) {
-          // const turnText = document.querySelector(".turn-text");
+          // const turnText = document.querySelector('.turn-text');
           Game.turnText.innerHTML = `Game over, ${name} wins!.`;
           Game.turnText.classList.add(`is-${color}`);
           Game.turnText.classList.add('notification');
