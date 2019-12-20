@@ -7,7 +7,7 @@ In this project, the student builds a Tic Tac Toe game (Again) but this time itâ
 <br />
 <p align="center">
   <a href="https://www.microverse.org">
-    <img src="img/microverse.png" alt="Logo" width="80" height="80">
+    <img src="microverse.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">PROJECT: Tic tac toe (again)</h3>
