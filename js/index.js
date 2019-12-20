@@ -12,8 +12,8 @@ const Game = (p1, p2, turnText, counter, space) => {
     const clearPlayerNames = () => {
       const fieldsToClear = document.getElementsByClassName('input');
       const fieldsArr = [...fieldsToClear];
-      fieldsArr.forEach(() => {
-        fieldsArr.value = '';
+      fieldsArr.forEach((item) => {
+        item.value = '';
       });
     };
     const getPlayerNames = () => {
@@ -177,8 +177,9 @@ const GameBoard = ((oMoves, xMoves) => {
   };
 })();
 
-const Player = (name, symbol) => { name, symbol };
-
+const Player = (name, symbol) => {
+  return { name, symbol };
+};
 
 //  gameplay
 const runGame = Game();
