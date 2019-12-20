@@ -1,7 +1,7 @@
 //gameplay
-const Game = (p1, p2, turnText) => {
+const Game = (p1, p2, turnText, counter, space) => {
   const form = document.querySelector(".form");
- 
+  Game.space = document.querySelector(".game-board");
   
   Game.turnText = document.querySelector(".turn-text");
 
@@ -56,38 +56,38 @@ const Game = (p1, p2, turnText) => {
 
   //add X or O to the board
   const addXorO = () => {
-    let counter = 1;
+    Game.counter = 1;
     GameBoard.oMoves = [];
     GameBoard.xMoves = [];
 
-    let space = document.querySelector(".game-board");
-    space.addEventListener("click", event => {
+
+    Game.space.addEventListener("click", event => {
       if (event.target.innerHTML.length === 0) {
-        if (counter % 2 === 0) {
+        if (Game.counter % 2 === 0) {
           GameBoard.oMoves.push(parseInt(event.target.getAttribute("data-num")));
           event.target.innerHTML = "O";
           event.target.setAttribute("class", "O");
           Game.turnText.innerHTML = `It is ${Game.p1.name}'s turn`;
-          counter++;
-          GameBoard.checkForWin(GameBoard.oMoves, Game.p2.name);
+          Game.counter++;
+          GameBoard.checkForWin(GameBoard.oMoves, Game.p2.name, 'danger');
         } else {
           GameBoard.xMoves.push(parseInt(event.target.getAttribute("data-num")));
           event.target.innerHTML = "X";
           event.target.setAttribute("class", "X");
           Game.turnText.innerHTML = `It is ${Game.p2.name}'s turn`;
-          counter++;
-          GameBoard.checkForWin(GameBoard.xMoves, Game.p1.name);
+          Game.counter++;
+          GameBoard.checkForWin(GameBoard.xMoves, Game.p1.name, 'warning');
         }
         // if the counter is greater than or equal to 10, the game is a draw!
-        if (counter >= 10) {
-          GameBoard.turnText.innerHTML = "It's a tie!";
-          setTimeout(GameBoard.resetBoard, 3000);
+        if (Game.counter >= 10) {
+          Game.turnText.innerHTML = "It's a tie!";
+          setTimeout(GameBoard.resetBoard, 1500);
         }
       }
     });
   };
 
-  return { showForm, hideForm, start, addXorO, p1,p2,turnText };
+  return { showForm, hideForm, start, addXorO, p1,p2,turnText, counter, space };
 };
 
 //GameBoard
@@ -106,7 +106,7 @@ const GameBoard = ((oMoves, xMoves) => {
 
 
 
-  const checkForWin = (movesArray, name) => {
+  const checkForWin = (movesArray, name, color) => {
     // loop over the first array of winning combinations
     for (let i = 0; i < winningCombinations.length; i++) {
       // reset the winCounter each time!
@@ -121,9 +121,9 @@ const GameBoard = ((oMoves, xMoves) => {
         if (winCounter === 3) {
           // const turnText = document.querySelector(".turn-text");
           Game.turnText.innerHTML = `Game over, ${name} wins!.`;
-          Game.turnText.classList.add("is-danger");
+          Game.turnText.classList.add(`is-${color}`);
           Game.turnText.classList.add("notification");
-          setTimeout(GameBoard.resetBoard, 1000);
+          setTimeout(GameBoard.resetBoard, 1500);
         }
       }
     }
@@ -145,6 +145,7 @@ const GameBoard = ((oMoves, xMoves) => {
   }
 
   const resetBoard = () => {
+    Game.counter = 1;
     Game.turnText.classList.remove("is-danger");
     Game.turnText.classList.remove("notification");
     Game.turnText.innerHTML = `Let's play again!`
@@ -157,17 +158,8 @@ const GameBoard = ((oMoves, xMoves) => {
 
     GameBoard.xMoves = [];
     GameBoard.oMoves = [];
-
-    // runGame.start();
-    // GameBoard.hideBoard();
-    // runGame.showForm();
-    // //reset input fields
-    // player1 = "";
-    // player2 = "";
-
-    // winCounter = 0;
-    // counter = 1;
-    // turnText.innerHTML = `New game! Let's go!`;
+    Game.space.removeEventListener('click', ()=>{});
+ 
   };
   return { hideBoard, resetBoard, showBoard, checkForWin, restartBtn, oMoves, xMoves };
 })();
