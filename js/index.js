@@ -6,7 +6,6 @@ const Game = (p1, p2, turnText, counter, space) => {
   Game.turnText = document.querySelector('.turn-text');
 
   const start = () => {
-    GameBoard.resetBoard();
     const clearPlayerNames = () => {
       const fieldsToClear = document.getElementsByClassName('input');
       const fieldsArr = [...fieldsToClear];
@@ -152,7 +151,7 @@ const GameBoard = ((oMoves, xMoves) => {
     Game.counter = 1;
     Game.turnText.classList.remove('is-danger');
     Game.turnText.classList.remove('notification');
-    Game.turnText.innerHTML = 'Let\'s play X\'s and O\'s!';
+    Game.turnText.innerHTML = 'Let\'s play again!';
     const cells = document.getElementsByTagName('td');
     const cellsArr = [...cells];
     cellsArr.forEach((cell) => {
