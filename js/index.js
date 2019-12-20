@@ -6,7 +6,6 @@ const Game = (p1, p2, turnText, counter, space) => {
   Game.turnText = document.querySelector('.turn-text');
 
   const start = () => {
-    GameBoard.resetBoard();
     const clearPlayerNames = () => {
       const fieldsToClear = document.getElementsByClassName('input');
       const fieldsArr = [...fieldsToClear];
