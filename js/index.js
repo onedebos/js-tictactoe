@@ -177,9 +177,8 @@ const GameBoard = ((oMoves, xMoves) => {
   };
 })();
 
-const Player = (name, symbol) => {
-  return { name, symbol };
-};
+const Player = (name, symbol) => { name, symbol };
+
 
 //  gameplay
 const runGame = Game();
