@@ -152,7 +152,7 @@ const GameBoard = ((oMoves, xMoves) => {
     Game.counter = 1;
     Game.turnText.classList.remove('is-danger');
     Game.turnText.classList.remove('notification');
-    Game.turnText.innerHTML = 'Let\'s play again!';
+    Game.turnText.innerHTML = 'Let\'s play X\'s and O\'s!';
     const cells = document.getElementsByTagName('td');
     const cellsArr = [...cells];
     cellsArr.forEach((cell) => {
