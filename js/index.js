@@ -33,7 +33,7 @@ const Game = (p1, p2, turnText, counter, space) => {
         const div = document.createElement('div');
         div.classList.add('notification');
         div.classList.add('is-danger');
-        div.innerHTML = `Enter player names to start game`;
+        div.innerHTML = 'Enter player names to start game';
         formContainer.appendChild(div);
         setTimeout(() => document.querySelector('.notification').remove(), 3000);
       }
@@ -59,7 +59,7 @@ const Game = (p1, p2, turnText, counter, space) => {
     GameBoard.oMoves = [];
     GameBoard.xMoves = [];
 
-    Game.space.addEventListener('click', event => {
+    Game.space.addEventListener('click', (event) => {
       if (event.target.innerHTML.length === 0) {
         if (Game.counter % 2 === 0) {
           GameBoard.oMoves.push(parseInt(event.target.getAttribute('data-num')));
@@ -78,7 +78,7 @@ const Game = (p1, p2, turnText, counter, space) => {
         }
         // if the counter is greater than or equal to 10, the game is a draw!
         if (Game.counter >= 10) {
-          Game.turnText.innerHTML = `It's a tie!`;
+          Game.turnText.innerHTML = 'It\'s a tie!';
           setTimeout(GameBoard.resetBoard, 1500);
         }
       }
@@ -94,7 +94,7 @@ const Game = (p1, p2, turnText, counter, space) => {
     p2,
     turnText,
     counter,
-    space
+    space,
   };
 };
 
@@ -109,7 +109,7 @@ const GameBoard = ((oMoves, xMoves) => {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
 
   const checkForWin = (movesArray, name, color) => {
@@ -154,10 +154,10 @@ const GameBoard = ((oMoves, xMoves) => {
     Game.counter = 1;
     Game.turnText.classList.remove('is-danger');
     Game.turnText.classList.remove('notification');
-    Game.turnText.innerHTML = `Let's play again!`;
+    Game.turnText.innerHTML = 'Let\'s play again!';
     const cells = document.getElementsByTagName('td');
     const cellsArr = [...cells];
-    cellsArr.forEach(cell => {
+    cellsArr.forEach((cell) => {
       cell.innerHTML = '';
       cell.setAttribute('class', 'clear');
     });
@@ -173,7 +173,7 @@ const GameBoard = ((oMoves, xMoves) => {
     checkForWin,
     restartBtn,
     oMoves,
-    xMoves
+    xMoves,
   };
 })();
 
