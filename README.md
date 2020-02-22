@@ -1,64 +1,61 @@
-# Project: TicTacToe
-Introduction
+# Portfolio
 
-In this project, the student builds a Tic Tac Toe game (Again) but this time it’ll be rendered in the browser. No backend. This project follows the lesson about Factory Functions and The Module Pattern so the main goal is to put into practice those concepts along with the main concepts of Object Oriented Programming. Particularly, classes/objects and how to access their methods and attributes.
-# 
+> This is a tic-tac-toe game built in Javascript. 
 
-<br />
-<p align="center">
-  <a href="https://www.microverse.org">
-    <img src="microverse.png" alt="Logo" width="80" height="80">
-  </a>
+![screenshot](https://res.cloudinary.com/onedebeos/image/upload/f_auto,q_auto/v1582245511/personal-portfolio/Screen_Shot_2020-02-21_at_01.37.35_lqntqz.png)
 
-  <h3 align="center">PROJECT: Tic tac toe (again)</h3>
+## Live
+[Live Link](https://zen-beaver-6debcc.netlify.com/)
 
-  <p align="center">
-    This is part of the project of the Main Javascript curriculum at Microverse
-    <br />
-    <br />
-    <a href="#"><strong>Final Result</strong></a>
-    ·
-    <a href="https://www.theodinproject.com/">Reference</a>
-    ·
-    <a href="https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript">Assignment</a>
-  </p>
-</p>
+## Built With
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+- Vanilla JS
+- Webpack
+- ESlint for linting
 
-Let’s extend the ‘Book’ example from the previous lesson and turn it into a small Library app.
+## Learnings
+- Factory Functions
+- Importing modules
 
-* #### [Assignment description](https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript)
-* #### [The final result]()	
+## Getting Started
 
-LICENSE
-## License
+**To get started, follow the instructions below**
 
-Distributed under the GNU General Public License v3.0. See `LICENSE` for more information.
+To get a local copy up and running follow these steps.
 
-## To Clone Repo
+- git clone this repo
 
-[Click here](https://github.com/onedebos/js-tictactoe.git)
+```
+git clone https://github.com/onedebos/js-tictactoe.git
+```
+- cd into the folder
+- open the index.html file
+- run live-server
 
-<!-- CONTACT -->
-## Contact
+## Authors
 
-* Diego Gomes: [Github](https://github.com/digomes87), [Twitter](https://twitter.com/devdiegogo),
-[LinkedIn](https://www.linkedin.com/in/diego-gomes-6b208384/)
-* Adebola [Github](https://github.com/onedebos)
+👤 **Adebola**
 
-Project Link: [https://github.com/digomes87/Library](https://github.com/digomes87/Library)
+- Github: [@githubhandle](https://github.com/onedebos)
+- Twitter: [@twitterhandle](https://twitter.com/debosthefirst)
+- Linkedin: [linkedin](https://www.linkedin.com/in/adebola-niran/)
+- Portfolio: [Website](https://elegant-borg-4081b7.netlify.com/#)
 
+**Diego**
+- [Github](https://github.com/digomes87)
+- [Twitter](https://twitter.com/devdiegogo),
+- [LinkedIn](https://www.linkedin.com/in/diego-gomes-6b208384/)
 
-[product-screenshot]: img/mockup.png
+## 🤝 Contributing
 
-* References 1 - [youtube](https://www.youtube.com/watch?v=P2TcQ3h0ipQ)
-* References 2 - [youtube](https://www.youtube.com/watch?v=yaPUl31nypk)
-* References 3 - [youtube](https://www.youtube.com/watch?v=TD5EaIkhSTQ)
-* References 4 - [youtube](https://www.youtube.com/watch?v=M258B1b_pMs)
-* References 5 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
-* References 6 - [youtube](https://www.youtube.com/watch?v=ByuAHXr1ytg)
-* References 1 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
-* References 1 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
-* References 1 - [youtube](https://www.youtube.com/watch?v=Mb4LIoxqIns)
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](lic.url) licensed.
