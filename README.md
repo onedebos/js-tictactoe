@@ -41,7 +41,7 @@ git clone https://github.com/onedebos/js-tictactoe.git
 - Linkedin: [linkedin](https://www.linkedin.com/in/adebola-niran/)
 - Portfolio: [Website](https://elegant-borg-4081b7.netlify.com/#)
 
-**Diego**
+👤 **Diego**
 - [Github](https://github.com/digomes87)
 - [Twitter](https://twitter.com/devdiegogo),
 - [LinkedIn](https://www.linkedin.com/in/diego-gomes-6b208384/)
